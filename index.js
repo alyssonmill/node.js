@@ -1,6 +1,5 @@
-var calculator = require("./calculator.js")
+var station = require("./station")
 
-console.log(calculator.somar(1,2));
-console.log(calculator.multiplicar(1,2));
-console.log(calculator.dividir(1,2));
-console.log(calculator.subtrair(1,2));
+console.log(station.calcGas(distance, type));
+console.log(station.calcEtanol(distance, type));
+
