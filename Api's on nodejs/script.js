@@ -1,136 +1,82 @@
+var apiUrl = 'https://apigenerator.dronahq.com/api/b5c-cxQn/data'
+
 class Car {
-    constructor(Brand, Model, Categorie, Year, Quilometragem, Value) {
-        this.Brand = Brand;
-        this.Model = Model;
-        this.Categorie = Categorie;
-        this.Year = Year;
-        this.Quilometragem = Quilometragem;
-        this.Value = Value;
+    constructor(brand, model, type, year, mileage, value) {
+        this.brand = brand;
+        this.model = model;
+        this.type = type;
+        this.year = year;
+        this.mileage = mileage;
+        this.value = value;
     }
 }
 
 function Get() {
 
-    console.log("Test")
+    return fetch(apiUrl)
 
-    return fetch('https://apigenerator.dronahq.com/api/qD9FMxBL/Cars')
-
-        .then((res) => res.json(
-            console.log("Inside of then"),
-            console.log(res.json)
-        ))
-
+        .then((response) => response.json())
         .then((data) => console.log(data));
 
 }
 
-async function postData(url = '', data = {}) {
+let newData = new Car("1", "1", "1", 1, 1, 1)
 
-    console.log("Test")
+async function sendData(url = '', method = 'POST', data = {}) {
 
-    try {
-        const response = await fetch(url, {
+    const response = await fetch(url, {
 
-            method: 'POST', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+        method: method, // *GET, POST, PUT, DELETE, etc.
 
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        });
+        mode: 'cors',
 
-        let responseData = await response.json()
-        console.log(responseData);
+        cache: 'no-cache',
 
-    } catch (error) {
-        console.error('Error posting data:', error);
-    }
+        credentials: 'same-origin',
+
+        headers: {
+
+            'Content-Type': 'application/json'
+
+        },
+
+        redirect: 'follow',
+
+        referrerPolicy: 'no-referrer',
+
+        body: JSON.stringify(data)
+
+    });
+
+    return response.json();
+
 }
 
-async function putData(url = '', data = {}) {
+// POST
 
-    console.log("testing")
+// sendData(apiUrl, 'POST', newData)
 
-        const response = await fetch(url, {
+//     .then(data => {
+//         console.log(data);
+//     })
 
-            method: 'PUT', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+// PUT
 
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        });
+// // let updatedData = {
+// //     brand: "2",
+// //     model: "2",
+// //     type: "2",
+// //     year: 2,
+// //     mileage: 2,
+// //     value: 2
+// // }
 
-        let responseData = await response.json()
-        console.log(responseData);
+// // sendData(apiUrl + '/2', 'PUT', updatedData)
 
-        Get();
+// // then(data => {
+// //     console.log(data);
+// // })
 
-    } 
+// DELETE
 
-// async function deleteData(url = '', data = {}) {
-
-//     console.log("Test")
-
-//     try {
-//         const response = await fetch(url, {
-
-//             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-//             mode: 'cors',
-//             cache: 'no-cache',
-//             credentials: 'same-origin',
-//             headers: {
-//                 'Content-Type': 'application/JSON'
-//             },
-
-//             redirect: 'follow',
-//             referrerPolicy: 'no-referrer',
-//             body: JSON.stringify(data)
-//         });
-
-//         let responseData = await response.json()
-//         console.log(responseData);
-
-//         Get();
-
-//     } catch (error) {
-//         console.error('Error posting data:', error);
-//     }
-// }
-
-const carData = new Car("Toyota", "Corolla", "Sedan", 2022, 10000, 25000);
-const updatedCarData = {
-    Brand: "Toyota",
-    Model: "Camry",
-    Type: "Sedan",
-    Year: 2023,
-    Quilometragem: 12000,
-    Value: 27000
-};
-
-const deleteCarData = {
-    Brand: "Volvo",
-    Model: "CL200",
-    Type: "Luxe",
-    Year: 2013,
-    Quilometragem: 0,
-    Value: 200000
-};
-
-
-
-postData('https://apigenerator.dronahq.com/api/ha0iGO11/Car', carData);
-putData('apigenerator.dronahq.com/api/qD9FMxBL/Cars/46', updatedCarData)
-// deleteData('apigenerator.dronahq.com/api/qD9FMxBL/Cars/1', deleteCarData )
-
-
+sendData(apiUrl + '/2', 'DELETE')
