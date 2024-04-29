@@ -1,7 +1,3 @@
-// Depois disso o desafio é implementar as APIs: 
-// GET, GET by id, POST, PUT, DELETE 
-// no código usando o typscript.
-
 class Car {
     constructor(Brand, Model, Categorie, Year, Quilometragem, Value) {
         this.Brand = Brand;
@@ -58,9 +54,8 @@ async function postData(url = '', data = {}) {
 
 async function putData(url = '', data = {}) {
 
-    console.log("Test")
+    console.log("testing")
 
-    try {
         const response = await fetch(url, {
 
             method: 'PUT', // *GET, POST, PUT, DELETE, etc.
@@ -81,40 +76,37 @@ async function putData(url = '', data = {}) {
 
         Get();
 
-    } catch (error) {
-        console.error('Error posting data:', error);
-    }
-}
+    } 
 
-async function deleteData(url = '', data = {}) {
+// async function deleteData(url = '', data = {}) {
 
-    console.log("Test")
+//     console.log("Test")
 
-    try {
-        const response = await fetch(url, {
+//     try {
+//         const response = await fetch(url, {
 
-            method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
-            mode: 'cors',
-            cache: 'no-cache',
-            credentials: 'same-origin',
-            headers: {
-                'Content-Type': 'application/json'
-            },
+//             method: 'DELETE', // *GET, POST, PUT, DELETE, etc.
+//             mode: 'cors',
+//             cache: 'no-cache',
+//             credentials: 'same-origin',
+//             headers: {
+//                 'Content-Type': 'application/JSON'
+//             },
 
-            redirect: 'follow',
-            referrerPolicy: 'no-referrer',
-            body: JSON.stringify(data)
-        });
+//             redirect: 'follow',
+//             referrerPolicy: 'no-referrer',
+//             body: JSON.stringify(data)
+//         });
 
-        let responseData = await response.json()
-        console.log(responseData);
+//         let responseData = await response.json()
+//         console.log(responseData);
 
-        Get();
+//         Get();
 
-    } catch (error) {
-        console.error('Error posting data:', error);
-    }
-}
+//     } catch (error) {
+//         console.error('Error posting data:', error);
+//     }
+// }
 
 const carData = new Car("Toyota", "Corolla", "Sedan", 2022, 10000, 25000);
 const updatedCarData = {
@@ -125,6 +117,7 @@ const updatedCarData = {
     Quilometragem: 12000,
     Value: 27000
 };
+
 const deleteCarData = {
     Brand: "Volvo",
     Model: "CL200",
@@ -137,7 +130,7 @@ const deleteCarData = {
 
 
 postData('https://apigenerator.dronahq.com/api/ha0iGO11/Car', carData);
-putData('apigenerator.dronahq.com/api/qD9FMxBL/Cars/1', updatedCarData)
+putData('apigenerator.dronahq.com/api/qD9FMxBL/Cars/46', updatedCarData)
 // deleteData('apigenerator.dronahq.com/api/qD9FMxBL/Cars/1', deleteCarData )
 
 
